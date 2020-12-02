@@ -1,0 +1,221 @@
+body {
+    font-size: .875rem;
+    background-color: rgb(232, 237, 240);
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+/*
+   * Sidebar
+   */
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    /* Behind the navbar */
+    padding: 65px 0 0;
+    /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+    }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: rgb(126, 136, 141);
+    font-size: 1.1rem;
+}
+.sidebar .nav-link:hover,
+.sidebar .nav-link:active {
+    background-color: #3e4c55;
+    color: #32BEA6;
+}
+
+#sidebarMenu div ul li a span {
+    margin-right: 1.1rem;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather, .sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+/*
+   * Navbar
+   */
+
+#topSearchBar {
+    max-width: 600px;
+    /* background-color: #32bea7d7; */
+    border-radius: 0px 100px 100px 0px;
+}
+
+#topSearchBar:focus {
+    background-color: #9cf1e3d3;
+}
+
+@media (max-width: 767.98px) {
+    #topSearchBar {
+        max-width: 767px;
+        border-radius: 0px;
+        background-color: #9cf1e3d3;
+    }
+}
+
+
+#userLogedinDropdown {
+    background-color: #3e4c55;
+    padding: 5px;
+    padding-left: 10px;
+    min-height: inherit;
+}
+
+@media (max-width: 767.98px) {
+    #userLogedinDropdown {
+        width: 767px;
+        max-width: 767px;
+    }
+}
+
+#userLogedinDropdown i {
+    color: #32BEA6;
+}
+
+#userLogedinDropdown button {
+    background-color: #3e4c55;
+    border-color: #3e4c55;
+    padding-left: .1rem;
+    font-size: .85rem;
+}
+
+.navbar {
+    min-height: 65px;
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    /* margin-bottom: .5rem;
+    margin-top: .5rem; */
+    font-size: 1rem;
+    background-color: #3e4c55;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    /* display: inline-flex; */
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+}
+
+.navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+
+
+/* Grid Area for Passwords */ 
+
+.customCol {
+    align-self: center;
+    padding: 0;
+    margin: 8px;
+    width: 18rem;
+    height: 350px;
+}
+
+@media (max-width: 1168px) {
+    .customCol {
+        width: 17rem;
+    }
+}
+
+.card {
+    /* width: 18rem; */
+    border: 1px solid #415e726d;
+    box-shadow: 0px 0px 5px .5px rgba(0, 0, 0, 0.319);
+    height: inherit;
+}
+
+.card:hover {
+    /* border: 4px solid #32BEA6; */
+    /* position: sticky;
+    width: 20rem; */
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.319);
+    transition: box-shadow .3s;
+}
+
+.card img {
+    height: 135px;
+}
+
+.card-body p {
+    font-size: 12px;
+    max-width: 180px;
+}
+
+.card-body button {
+    font-size: 10px; 
+    height: 24px;
+}
+
+.card-body button:hover {
+    background-color: #415E72;
+    border-color: #32BEA6;
+    border-width: 2px;
+}
