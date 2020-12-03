@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import SavedAccount
+from .models import SavedAccount
 
 webSiteInfoList = [
     {
