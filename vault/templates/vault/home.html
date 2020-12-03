@@ -90,19 +90,25 @@
                         {% for websiteInfo in webSiteInfoList %}
                         <div class="customCol col-xs-12">
                             <div class="card">
-                                <img class="card-img-top" src={{ websiteInfo.img_source }} alt="Card url">
+                                <img class="card-img-top" src={{ websiteInfo.websiteImage }} alt="Card url">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ websiteInfo.website }}</h5>
+                                    <h5 class="card-title">{{ websiteInfo.websiteName }}</h5>
                                     <div class="card-url-group d-flex justify-content-between">
-                                        <p class="card-text">{{ websiteInfo.url }}</p>
+                                        <p class="card-text">{{ websiteInfo.websiteUrl }}</p>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                     </div>
+                                    <div>
+                                        <p class="card-text">username: </p>
+                                    </div>
                                     <div class="card-username-group d-flex justify-content-between">
-                                        <p class="card-text">{{ websiteInfo.username }}</p>
+                                        <p class="card-text">{{ websiteInfo.usernameSpecial}}</p>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                     </div>
                                     <div class="card-password-group d-flex justify-content-between">
-                                        <p class="card-text">{{ websiteInfo.password }}</p>
+                                        <div>
+                                        <p class="card-text">password: </p>
+                                    </div>
+                                        <p class="card-text">{{ websiteInfo.passwordSpecial }}</p>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                     </div>
                                 </div>
