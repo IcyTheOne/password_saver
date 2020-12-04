@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class SavedAccount(models.Model):
     websiteName = models.CharField(max_length=100)
     websiteUrl = models.CharField(max_length=100)
-    websiteImage = models.FileField()   #cause we'll put image here
+    websiteImage = models.TextField()   #cause we'll put image here
     emailSpecial = models.CharField(max_length=100)
     usernameSpecial = models.CharField(max_length=100)
     passwordSpecial = models.CharField(max_length=100)    #this may need to be changed since we'll probably encrypt it

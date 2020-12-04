@@ -68,7 +68,7 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Passwords</h1>
+                <h1 class="h2" style="color: #343A40;">Passwords</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Button</button>
@@ -86,124 +86,101 @@
 
             <div class="container-fluid">
                 <div class="main-grid-view row d-flex justify-content-lg-start justify-content-center">
-                    {% for x in webSiteInfoList %}
-                        {% for websiteInfo in webSiteInfoList %}
-                        <div class="customCol col-xs-12">
-                            <div class="card">
-                                <img class="card-img-top" src={{ websiteInfo.websiteImage }} alt="Card url">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ websiteInfo.websiteName }}</h5>
-                                    <div class="card-url-group d-flex justify-content-between">
-                                        <p class="card-text">{{ websiteInfo.websiteUrl }}</p>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
-                                    </div>
-                                    <div>
-                                        <p class="card-text">username: </p>
-                                    </div>
-                                    <div class="card-username-group d-flex justify-content-between">
-                                        <p class="card-text">{{ websiteInfo.usernameSpecial}}</p>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
-                                    </div>
-                                    <div class="card-password-group d-flex justify-content-between">
-                                        <div>
-                                        <p class="card-text">password: </p>
-                                    </div>
-                                        <p class="card-text">{{ websiteInfo.passwordSpecial }}</p>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
-                                    </div>
+                    {% for websiteInfo in webSiteInfoList %}
+                    <div class="customCol col-xs-12">
+                        <div class="card">
+                            {% if websiteInfo.websiteImage == "''" %}
+                            <img class="card-img-top" src="{% static 'vault/lock.png' %}" alt="Card url">
+                            {% else %}
+                            <img class="card-img-top" src={{ websiteInfo.websiteImage }} alt="Card url">
+                            {% endif %}
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ websiteInfo.websiteName }}</h5>
+                                <div class="card-url-group d-flex justify-content-between">
+                                    <p class="card-text">{{ websiteInfo.websiteUrl }}</p>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+                                </div>
+                                <div>
+                                    <p class="card-text"><em><b>Username :</b></em> </p>
+                                </div>
+                                <div class="card-username-group d-flex justify-content-between">
+                                    <p class="card-text">{{ websiteInfo.usernameSpecial}}</p>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+                                </div>
+                                <div>
+                                    <p class="card-text"><em><b>Password :</b></em> </p>
+                                </div>
+                                <div class="card-password-group d-flex justify-content-between">
+                                    <p class="card-text">{{ websiteInfo.passwordSpecial }}</p>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
+                    </div>
                     {% endfor %}
-
-                    <!-- <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://9to5google.com/wp-content/uploads/sites/4/2018/09/youtube_logo_dark.jpg?quality=82&strip=all"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="customCol col-xs-12">
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">URL address</p>
-                                <p class="card-text">Username</p>
-                                <p class="card-text">Password</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
-            <br><br><br><br><br>
+            <!-- FLOATING BUTTON TRIGGERS THE MODAL BELOW  -->
+            <a role="button" class="floating-button" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-plus my-float"></i>
+            </a>
+
+            <!-- MODAL WINDOW -->
+            <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Password</h5>
+                            <button type="button" class="close" style="color: #32BEA6;" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="website-name" class="col-sm-10 col-form-label">Website name</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="website-name" placeholder="Website name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="website-url" class="col-sm-10 col-form-label">Website url</label>
+                                    <div class="col-sm-12">
+                                        <input type="url" class="form-control" id="website-url" placeholder="Website url">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-10 col-form-label">Email</label>
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="website-username" class="col-sm-10 col-form-label">Website username</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="website-username" placeholder="(Keep empty if same with email)">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-10 col-form-label">Password</label>
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" id="inputPassword"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #32BEA6; border: 0;">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
 </div>
