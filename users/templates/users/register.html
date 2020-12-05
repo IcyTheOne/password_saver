@@ -23,7 +23,7 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="content-section">
                 <form method="POST">
-                    {% csrf_token %}
+                    {% csrf_token %} <!-- Cross Site Request Forgery token -->
                     <fieldset class="form-group">
                         <legend class="border-bottom mb-4">Hey you, wanna store your passwords securely? ;))</legend>
                         {{ form|crispy }}
