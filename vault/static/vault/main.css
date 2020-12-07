@@ -201,7 +201,8 @@ body {
 }
 
 .card img {
-    height: 135px;
+    height: 140px;
+    width: 100.1%;
 }
 
 .card-title {
@@ -276,4 +277,16 @@ body {
     background-color: #415E72;
     color: #32BEA6;
     margin: 0;
+}
+
+/* ALERT MODAL */
+
+#alert-modal .modal-body{
+    padding: 0;
+    background-color: transparent;
+}
+
+#alert-modal .alert{
+    margin: 0;
+    width: 100.1%;
 }

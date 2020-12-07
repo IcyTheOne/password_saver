@@ -8,7 +8,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()  # aaand this is how new user is added to DB
-            username = form.cleaned_data.get('usernameSpecial')
+            username = form.cleaned_data.get('username')
             messages.success(request,
                              f'Account created for {username}!')  # gotta fix this cause its fucking up the view
             return redirect('vault-home')
