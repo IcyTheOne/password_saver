@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import SavedAccount
+from django.contrib.auth.decorators import login_required as Login_required
 
 webSiteImages = [
     {
@@ -17,7 +18,7 @@ webSiteImages = [
 ]
 
 # Create your views here.
-
+@Login_required
 def home(request):
     context = {
         'title':'Home',
