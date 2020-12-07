@@ -125,3 +125,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'group5project5mail@gmail.com'
 EMAIL_HOST_PASSWORD = 'ypcumuwaogtmsmys'
+LOGIN_REDIRECT_URL = 'vault-home'
