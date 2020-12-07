@@ -1,0 +1,31 @@
+{% extends "vault/base.html" %}
+{% load static %}
+{% block content %}
+    <!-- TOP MENU BAR -->
+
+    <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
+            <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
+        </a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+                data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+    </nav>
+
+    <h2> You have been logged out</h2>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Login again?<button>
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a></button>
+                    </small>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+{% endblock content %}
