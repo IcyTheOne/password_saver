@@ -19,8 +19,7 @@
 
     <!-- MIDDLE -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-        <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="content-section">
                 <form method="POST">
                     {% csrf_token %} <!-- Cross Site Request Forgery token -->
@@ -34,7 +33,7 @@
                 </form>
                 <div class="border-top pt-3">
                     <small class="text-muted">
-                        Already have your passwords secured with us? Then <button>Log in.</button> <a class="ml-2" href="login.html"></a>
+                        Already have your passwords secured with us? Then <a href="{% url 'login' %}">Log in</a>
                     </small>
                 </div>
             </div>
