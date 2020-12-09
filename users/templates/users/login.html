@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-    <!-- TOP MENU BAR -->
 
+    <!-- TOP MENU BAR -->
     <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
             <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
@@ -13,51 +13,75 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        </div>
+{#        </div>#}
     </nav>
- <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-        <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="content-section">
-{% if form.errors %}
-<div id="alert-modal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="alert alert-danger" role="alert">
-            Your username and password didn't match. Please try again!
-          </div>
+                {% if form.errors %}
+                <div id="alert-modal" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="alert alert-danger" role="alert">
+                            Your username and password didn't match. Please try again!
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                    {% else %}
+                        <p>Log in to PassMan:</p>
+                    {% endif %}
+                {% endif %}
+
+
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %} <!-- Cross Site Request Forgery token -->
+                    <fieldset class="form-group">
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info">
+                        <input type="submit" value="Log in">
+                         <input type="hidden" name="next" value="{{ next }}">
+                        </button>
+                    </div>
+                    <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Don't have an account? Then <a href="{% url 'register' %}">Register</a>
+                    </small>
+                </div>
+                </form>
+
+{#            old code#}
+{#                <form method="post" action="{% url 'login' %}">#}
+{#                    {% csrf_token %}#}
+{#                    <table>#}
+{#                        <tr>#}
+{#                            <td>{{ form.username.label_tag }}</td>#}
+{#                            <td>{{ form.username }}</td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td>{{ form.password.label_tag }}</td>#}
+{#                            <td>{{ form.password }}</td>#}
+{#                        </tr>#}
+{#                    </table>#}
+{##}
+{#                    <input type="submit" value="Log in">#}
+{#                    <input type="hidden" name="next" value="{{ next }}">#}
+{#                </form>#}
+
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-{% endif %}
+    </main>
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
-
-{#something#}
 {% endblock %}

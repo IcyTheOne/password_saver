@@ -1,29 +1,42 @@
 {% extends "vault/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-    <!-- TOP MENU BAR -->
 
+    <!-- TOP MENU BAR -->
     <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
-            <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
-        </a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-                data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div>
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
+                <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
+            </a>
+            <button class="navbar-togler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-togler-icon"></span>
+            </button>
         </div>
     </nav>
 
-    <h2> You have been logged out</h2>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="content-section">
+                <h1> You have been logged out</h1>
                 <div class="border-top pt-3">
-                    <small class="text-muted">
-                        Login again?<button>
-                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a></button>
+                    <small class="text-info">
+                        Login again?
+                        <p></p>
+                        <a class="btn btn-outline-info" href="{% url 'login' %}">Log in</a>
                     </small>
                 </div>
+                <p></p>
+                <div class="content-section">
+                <h4>Don't have an account? </h4>
+                    <small class="text-info">
+                        <a href="{% url 'register' %}">Register</a>
+                    </small>
+                </div>
+                </div>
             </div>
-
         </div>
     </main>
 

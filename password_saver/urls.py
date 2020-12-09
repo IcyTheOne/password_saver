@@ -51,5 +51,5 @@ urlpatterns = [
 
 
     #vault app urls
-    path('vault/', include('vault.urls')),
+    path('', include('vault.urls')),
 ]
