@@ -20,7 +20,17 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="content-section">
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<div id="alert-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">
+            Your username and password didn't match. Please try again!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endif %}
 
 {% if next %}

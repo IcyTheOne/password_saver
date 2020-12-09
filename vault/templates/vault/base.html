@@ -20,23 +20,6 @@
     integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <!-- <script defer src="https://friconix.com/cdn/friconix.js"> </script> -->
 
-  <!-- <style>
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-      </style> -->
-
   {% if title %}
   <title>Django Vault - {{ title }}</title>
   {% else %}
@@ -44,10 +27,11 @@
   {% endif %}
 
 </head>
+
 <body>
 
   <!-- ALERT MODAL -->
-  <!-- Showing an Alert message -->
+  <!-- Showing an Alert message comming from the register html page. -->
   <!-- 1st - If any messages are sent from the backend the modal below will be added.  -->
   <!-- 2nd - This modal with the help of the jQery script, is set to visible when the html document is ready -->
   {% if messages %}
@@ -65,6 +49,20 @@
     </div>
   </div>
   {% endfor %}
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  <div id="alert-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="alert alert-success" role="alert">
+            Welcome back {{ user.username }} !
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   {% endif %}
 
   {% block content %} {% endblock content %}

@@ -1,5 +1,6 @@
 {% extends "vault/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <!-- TOP MENU BAR -->
@@ -20,9 +21,13 @@
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle ml-1" type="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                bobos_ksimpoug@hotmail.com
+                {% if user.is_authenticated %}
+                    {{ user.email }} <br> {{ user.username }}
+                {% else %}
+                    Non
+                {% endif %}
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 1rem;" >
                 <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
             </div>
         </div>
@@ -86,33 +91,33 @@
 
             <div class="container-fluid">
                 <div class="main-grid-view row d-flex justify-content-lg-start justify-content-center">
-                    {% for websiteInfo in webSiteInfoList %}
+                    {% for savedAccount in savedAccounts %}
                     <div class="customCol col-xs-12">
                         <div class="card">
-                            {% if websiteInfo.websiteImage == "''" %}
-                            <img class="card-img-top" src="{% static 'vault/lock.png' %}" alt="Card url">
+                            {% if savedAccount.websiteImage == "vault/lock.png" %}
+                            <img class="card-img-top" src="{% static savedAccount.websiteImage %}" alt="Card url">
                             {% else %}
-                            <img class="card-img-top" src={{ websiteInfo.websiteImage }} alt="Card url">
+                            <img class="card-img-top" src={{ savedAccount.websiteImage }} alt="Card url">
                             {% endif %}
 
                             <div class="card-body">
-                                <h5 class="card-title">{{ websiteInfo.websiteName }}</h5>
+                                <h5 class="card-title">{{ savedAccount.websiteName }}</h5>
                                 <div class="card-url-group d-flex justify-content-between">
-                                    <p class="card-text">{{ websiteInfo.websiteUrl }}</p>
+                                    <p class="card-text">{{ savedAccount.websiteUrl }}</p>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                                 <div>
                                     <p class="card-text"><em><b>Username :</b></em> </p>
                                 </div>
                                 <div class="card-username-group d-flex justify-content-between">
-                                    <p class="card-text">{{ websiteInfo.usernameSpecial}}</p>
+                                    <p class="card-text">{{ savedAccount.usernameSpecial}}</p>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                                 <div>
                                     <p class="card-text"><em><b>Password :</b></em> </p>
                                 </div>
                                 <div class="card-password-group d-flex justify-content-between">
-                                    <p class="card-text">{{ websiteInfo.passwordSpecial }}</p>
+                                    <p class="card-text">{{ savedAccount.passwordSpecial }}</p>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                             </div>
@@ -128,58 +133,37 @@
             </a>
 
             <!-- MODAL WINDOW -->
-            <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Password</h5>
-                            <button type="button" class="close" style="color: #32BEA6;" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group row">
-                                    <label for="website-name" class="col-sm-10 col-form-label">Website name</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="website-name" placeholder="Website name">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="website-url" class="col-sm-10 col-form-label">Website url</label>
-                                    <div class="col-sm-12">
-                                        <input type="url" class="form-control" id="website-url" placeholder="Website url">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputEmail" class="col-sm-10 col-form-label">Email</label>
-                                    <div class="col-sm-12">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="website-username" class="col-sm-10 col-form-label">Website username</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="website-username" placeholder="(Keep empty if same with email)">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputPassword" class="col-sm-10 col-form-label">Password</label>
-                                    <div class="col-sm-12">
-                                        <input type="password" class="form-control" id="inputPassword"
-                                            placeholder="Password">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" style="background-color: #32BEA6; border: 0;">Save changes</button>
+
+            <form method="POST">
+                <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Password</h5>
+                                <button type="button" class="close" style="color: #32BEA6;" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                {% csrf_token %}
+                                <!-- Cross Site Request Forgery token -->
+                                {{ vaultAccountForm|crispy }}
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Save changes" class="btn btn-primary"
+                                    style="background-color: #32BEA6; border: 0;">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
+
 
         </main>
     </div>

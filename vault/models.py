@@ -17,6 +17,6 @@ class SavedAccount(models.Model):
     userID = models.ForeignKey(User, on_delete=models.CASCADE)  #connection to the user's credentials,
     # not sure whether we have to also add the primary key here
 
-    #magic method - how we wanna see it printed on the card in the vault
+    #magic method - It returns what we want to see when a SavedAccount object is printed.
     def __str__(self):
         return self.websiteName
