@@ -19,15 +19,22 @@ from django.conf.urls import include, url
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.urls import views as auth_views
 from users import views as user_views
+from two_factor.urls import urlpatterns as tfurls
+from two_factor.views import LoginView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #users app urls
-    path('users/', include('users.urls', namespace='users')),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+   # path('users/', include('users.urls', namespace='users')),
+    path(
+        'login/',
+        LoginView.as_view(template_name='two_factor/core/login.html'),
+        name='login',
+    ),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('register/', user_views.register, name='register'),
+    path('', include(tfurls)),
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
              template_name='users/password_reset.html'

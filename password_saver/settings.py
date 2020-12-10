@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -126,4 +131,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'group5project5mail@gmail.com'
 EMAIL_HOST_PASSWORD = 'ypcumuwaogtmsmys'
 LOGIN_REDIRECT_URL = 'vault-home'
-LOGIN_URL = 'login'
+LOGIN_URL = 'two_factor:login'
