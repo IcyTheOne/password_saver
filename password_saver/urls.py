@@ -23,10 +23,11 @@ from two_factor.urls import urlpatterns as tfurls
 from two_factor.views import LoginView
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     #users app urls
-   # path('users/', include('users.urls', namespace='users')),
+#    path('users/', include('users.urls', namespace='users')),
     path(
         'login/',
         LoginView.as_view(template_name='two_factor/core/login.html'),
