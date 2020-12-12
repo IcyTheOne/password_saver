@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from fernet_fields import EncryptedTextField
+from fernet_fields import EncryptedCharField
+
 
 # Create your models here.
 
@@ -11,9 +14,9 @@ class SavedAccount(models.Model):
     websiteName = models.CharField(max_length=100)
     websiteUrl = models.CharField(max_length=100)
     websiteImage = models.TextField()   #cause we'll put image here
-    emailSpecial = models.CharField(max_length=100)
-    usernameSpecial = models.CharField(max_length=100)
-    passwordSpecial = models.CharField(max_length=100)    #this may need to be changed since we'll probably encrypt it
+    emailSpecial = EncryptedCharField(max_length=100)
+    usernameSpecial = EncryptedCharField(max_length=100)
+    passwordSpecial = EncryptedCharField(max_length=100)   #this may need to be changed since we'll probably encrypt it
     userID = models.ForeignKey(User, on_delete=models.CASCADE)  #connection to the user's credentials,
     # not sure whether we have to also add the primary key here
 
