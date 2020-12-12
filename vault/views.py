@@ -14,19 +14,18 @@ websiteImages = {
     'default_image':'vault/lock.png',
 }
 
-# Create your views here.
 
+# Create your views here.
 @Login_required
 def home(request):
-    logedinUser = request.user # Getting the currently loged in user 
-    logedinUserSavedAccounts = SavedAccount.objects.filter(userID=logedinUser.pk) # Getting saved accounts for currently loged-in user.
+    logedinUser = request.user  # Getting the currently loged in user
+    logedinUserSavedAccounts = SavedAccount.objects.filter(userID=logedinUser.pk)   # Getting saved accounts for currently loged-in user.
 
     context = {
         'title':'Home',
         'savedAccounts': logedinUserSavedAccounts,
         'websiteImages':websiteImages
     }
-
 
     if request.method == 'POST':
         return storeVaultAccount(request, logedinUser)
@@ -37,7 +36,6 @@ def home(request):
 
 
 def storeVaultAccount(request, logedinUser):
-    
     form = VaultAccountForm(request.POST)
     if form.is_valid():
         newVaultAccount = form.save(commit=False)  # Create, but don't save the new VaultAccount instance. This instance only contains data received from the form, but to be a valid insertion to the database an image url and a userID must be specified. 
@@ -45,7 +43,7 @@ def storeVaultAccount(request, logedinUser):
         websiteName = form.cleaned_data['websiteName']
         # email = form.cleaned_data['emailSpecial']
 
-        if websiteName in websiteImages.keys(): # Checking if the mentioned webisite name corresponds to a url image.
+        if websiteName in websiteImages.keys(): # Checking if the mentioned website name corresponds to a url image.
             newVaultAccount.websiteImage = websiteImages[websiteName]
         else:
             newVaultAccount.websiteImage = websiteImages['default_image']
