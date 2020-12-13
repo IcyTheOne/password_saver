@@ -14,13 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import include, url
+from django.urls import path, include
+from django.conf.urls import url
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.urls import views as auth_views
 from users import views as user_views
 from two_factor.urls import urlpatterns as tfurls
 from two_factor.views import LoginView
+from two_factor.views import SetupView
+from two_factor.views import DisableView
+
+
 
 
 
@@ -28,6 +32,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #users app urls
 #    path('users/', include('users.urls', namespace='users')),
+    path(
+        'two_factor/setup/',
+        SetupView.as_view(),
+        name='setup',
+    ),
+    path(
+        'two_factor/disable/',
+        DisableView.as_view(),
+        name='disable',
+    ),
     path(
         'login/',
         LoginView.as_view(template_name='two_factor/core/login.html'),
