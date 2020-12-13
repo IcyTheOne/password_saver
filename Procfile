@@ -1,1 +1,1 @@
-﻿web: gunicorn password_saver.wsgi
+﻿web: gunicorn password_saver.wsgi.application
