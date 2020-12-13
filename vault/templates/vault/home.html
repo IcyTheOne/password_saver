@@ -6,7 +6,7 @@
 <!-- TOP MENU BAR -->
 
 <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="{% url 'vault-home' %}">
         <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
     </a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
@@ -76,8 +76,8 @@
                 <h1 class="h2" style="color: #343A40;">Passwords</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Button </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Button</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'setup' %}", style="color:#2ab59d">Enable two factor </a></button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'disable' %}", style="color:	#FF0000">Disable two factor </a></button>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
                         <span data-feather="calendar"></span>
