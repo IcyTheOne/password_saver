@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,3 +136,5 @@ EMAIL_HOST_PASSWORD = 'ypcumuwaogtmsmys'
 LOGIN_REDIRECT_URL = 'vault-home'
 LOGIN_URL = 'two_factor:login'
 SECRET_KEY = 'ourSecretKey+HashedDateOfBirth'
+
+django_heroku.settings(locals())
