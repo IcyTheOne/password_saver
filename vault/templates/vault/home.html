@@ -5,6 +5,7 @@
 {% block content %}
 <!-- TOP MENU BAR -->
 
+
 <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="{% url 'vault-home' %}">
         <img src="{% static 'vault/sec3.png' %}" width="120" height="35" alt="">
@@ -89,6 +90,7 @@
 
             <!-- CARDS GRID CONTAINER -->
 
+
             <div class="container-fluid">
                 <div class="main-grid-view row d-flex justify-content-lg-start justify-content-center">
                     {% for savedAccount in savedAccounts %}
@@ -104,21 +106,21 @@
                                 <h5 class="card-title">{{ savedAccount.websiteName }}</h5>
                                 <div class="card-url-group d-flex justify-content-between">
                                     <p class="card-text">{{ savedAccount.websiteUrl }}</p>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+                                    <button type="button" onClick="copyPassword({{ savedAccount.id }})" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                                 <div>
                                     <p class="card-text"><em><b>Username :</b></em> </p>
                                 </div>
                                 <div class="card-username-group d-flex justify-content-between">
-                                    <p class="card-text">{{ savedAccount.usernameSpecial}}</p>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+                                    <p   class="card-text">{{ savedAccount.usernameSpecial}}</p>
+                                    <button type="button" onClick="copyPassword({{ savedAccount.id }})" class="btn btn-sm btn-outline-secondary">Copy</button>
                                 </div>
                                 <div>
                                     <p class="card-text"><em><b>Password :</b></em> </p>
                                 </div>
                                 <div class="card-password-group d-flex justify-content-between">
-                                    <p class="card-text">{{ savedAccount.passwordSpecial }}</p>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+                                    <p id="{{ savedAccount.id }}" class="card-text">{{ savedAccount.passwordSpecial }} </p>
+                                    <button  type="button" onClick="copyPassword({{ savedAccount.id }})" class="btn btn-sm btn-outline-secondary">Copy pass</button>
                                 </div>
                             </div>
                         </div>
@@ -168,4 +170,19 @@
         </main>
     </div>
 </div>
+  <!-- Javascript for copying -->
+<script type="text/javascript">
+    function copyPassword(passwordText) {
+
+
+        var text = document.getElementById(passwordText).innerHTML;
+        var elem = document.createElement("textarea");
+        document.body.appendChild(elem);
+        elem.value = text;
+        elem.select();
+        document.execCommand("copy");
+        document.body.removeChild(elem);
+        alert('Password copied :' + text)
+    }
+</script>
 {% endblock content %}
