@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 # Test to get latest test from LGTM
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '@kq%^rkpnrm3n8o@n-p$5uevphw43z=zsi81pw**$d%!41znl^'
+#SECRET_KEY = '@kq%^rkpnrm3n8o@n-p$5uevphw43z=zsi81pw**$d%!41znl^'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
