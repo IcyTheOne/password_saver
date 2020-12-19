@@ -137,5 +137,6 @@ LOGIN_REDIRECT_URL = 'vault-home'
 LOGIN_URL = 'two_factor:login'
 SECRET_KEY = 'ourSecretKey+HashedDateOfBirth'
 SESSION_COOKIE_HTTPONLY = True  #not sure if this will exactly work
+CSRF_COOKIE_HTTPONLY = True
 
 django_heroku.settings(locals())
