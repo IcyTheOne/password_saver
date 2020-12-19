@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from fernet_fields import EncryptedTextField
 from fernet_fields import EncryptedCharField
 
 

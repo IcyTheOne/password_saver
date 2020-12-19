@@ -4,6 +4,10 @@
 
 {% block content %}
 <!-- TOP MENU BAR -->
+{% csrf_token %}
+<script>
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+</script>
 
 
 <nav class="navbar sticky-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">

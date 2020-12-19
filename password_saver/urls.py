@@ -15,8 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.urls import views as auth_views
 from users import views as user_views
 from two_factor.urls import urlpatterns as tfurls
